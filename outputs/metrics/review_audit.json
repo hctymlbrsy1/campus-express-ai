@@ -1,0 +1,199 @@
+{
+  "template_leakage": {
+    "random_split": {
+      "acc": 0.9007,
+      "f1": 0.889
+    },
+    "group_split_3seeds": {
+      "acc_mean": 0.8582,
+      "acc_std": 0.0199,
+      "f1_mean": 0.8485,
+      "f1_std": 0.0245
+    },
+    "near_duplicate": {
+      "test_n": 151,
+      "share_sim_gt_0.8": 0.3841,
+      "sim_median": 0.7137,
+      "skeleton_seen_rate": 0.3377
+    }
+  },
+  "encoding": [
+    {
+      "tag": "数值编码（现状）",
+      "RMSE": 36.01,
+      "R2": 0.8383
+    },
+    {
+      "tag": "one-hot",
+      "RMSE": 30.26,
+      "R2": 0.8859
+    },
+    {
+      "tag": "正余弦编码",
+      "RMSE": 34.91,
+      "R2": 0.8481
+    },
+    {
+      "tag": "dow one-hot + month 数值",
+      "RMSE": 32.3,
+      "R2": 0.87
+    }
+  ],
+  "winsor": {
+    "clipped_n": 9,
+    "clipped_rows": [
+      {
+        "date": "2025-06-16",
+        "volume_orig": 591,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-03",
+        "volume_orig": 591,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-09",
+        "volume_orig": 594,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-10",
+        "volume_orig": 635,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-11",
+        "volume_orig": 611,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-13",
+        "volume_orig": 605,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-14",
+        "volume_orig": 634,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2025-11-15",
+        "volume_orig": 662,
+        "volume_proc": 585.0
+      },
+      {
+        "date": "2026-06-20",
+        "volume_orig": 609,
+        "volume_proc": 585.0
+      }
+    ],
+    "clipped_in_test": 0,
+    "test_start": "2026-06-22",
+    "raw_max_in_test": 548.0,
+    "promo_days_in_train": 59,
+    "promo_days_in_test": 10
+  },
+  "calendar_fill": {
+    "missing_dates": [
+      "2025-09-28",
+      "2026-02-21",
+      "2026-08-20"
+    ],
+    "rows": [
+      {
+        "date": "2025-09-28",
+        "true_dow": 6,
+        "stored_dow": 0,
+        "true_is_weekend": 1,
+        "stored_is_weekend": 0,
+        "correct": false
+      },
+      {
+        "date": "2026-02-21",
+        "true_dow": 5,
+        "stored_dow": 6,
+        "true_is_weekend": 1,
+        "stored_is_weekend": 1,
+        "correct": false
+      },
+      {
+        "date": "2026-08-20",
+        "true_dow": 3,
+        "stored_dow": 4,
+        "true_is_weekend": 0,
+        "stored_is_weekend": 0,
+        "correct": false
+      }
+    ]
+  },
+  "boundary": {
+    "max_own_center_distance": {
+      "user": "U332",
+      "dist": 9.34
+    },
+    "min_ratio_d1_d2": {
+      "user": "U061",
+      "ratio": 0.099,
+      "d1": 0.39,
+      "d2": 3.91
+    },
+    "ratio_p10": 0.176
+  },
+  "cleaning": {
+    "escaped_short_rows": [],
+    "escaped_n": 0,
+    "garbled_in_clean": [
+      {
+        "text_clean": "。。。",
+        "label_name": "取件问题"
+      },
+      {
+        "text_clean": "你好?取件短信没收到,只看到菜鸟驿站有一条取件提醒。。。",
+        "label_name": "取件问题"
+      },
+      {
+        "text_clean": "asdf",
+        "label_name": "退换货"
+      },
+      {
+        "text_clean": "投诉了三次没人回复,工单号13886030,顺便问一下收到短信说包裹到校园驿站了,我过去找了二十分钟也没找到。。。",
+        "label_name": "赔付投诉"
+      },
+      {
+        "text_clean": "您好,约的八点上门取件,师傅一直没来,电话也打不通麻烦了。。。",
+        "label_name": "寄件问题"
+      },
+      {
+        "text_clean": "□□□□",
+        "label_name": "寄件问题"
+      },
+      {
+        "text_clean": "退款一直显示待揽收,我都寄出去三天了,约的十二点上门取件,师傅一直没来,电话也打不通。。。",
+        "label_name": "退换货"
+      },
+      {
+        "text_clean": "你好,延误了五天,能不能赔付。。。",
+        "label_name": "赔付投诉"
+      },
+      {
+        "text_clean": "寄件上门要不要另外加钱?学校里面能进来吗,还有就是两个件的取件码一样,是不是系统出错了。。。",
+        "label_name": "寄件问题"
+      },
+      {
+        "text_clean": "请问南门快递点几点开门?周末营业吗,还有就是件丢了,里面是化妆品,价值1200元。。。",
+        "label_name": "其他咨询"
+      },
+      {
+        "text_clean": "想改一下收件地址,已经从快递超市寄出去了还能改吗。。。",
+        "label_name": "寄件问题"
+      }
+    ],
+    "garbled_n": 11,
+    "typo_map_note": "normalize_text 先把『在吗』映射为『你好』(2 字)，再按 len<2 过滤"
+  },
+  "cv_leakage": {
+    "stratified_cv_f1": 0.8792,
+    "group_cv_f1": 0.8247
+  }
+}

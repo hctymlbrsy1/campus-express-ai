@@ -1,0 +1,33 @@
+{
+  "source": "qa_scoring_filled.xlsx",
+  "scored_rows": 45,
+  "total_rows": 45,
+  "missing": [],
+  "by_strategy": {
+    "零样本": {
+      "n": 15,
+      "accuracy": 5.0,
+      "completeness": 3.73,
+      "readability": 4.07,
+      "overall": 4.27,
+      "std_overall": 0.39
+    },
+    "少样本": {
+      "n": 15,
+      "accuracy": 5.0,
+      "completeness": 3.87,
+      "readability": 3.8,
+      "overall": 4.22,
+      "std_overall": 0.31
+    },
+    "思维链": {
+      "n": 15,
+      "accuracy": 5.0,
+      "completeness": 4.8,
+      "readability": 4.87,
+      "overall": 4.89,
+      "std_overall": 0.29
+    }
+  },
+  "note": "准确性 42 行全为 5 分；差异集中在完整性与可读性。缺失行按空值计算，不参与均值。"
+}

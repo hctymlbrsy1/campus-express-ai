@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-11-20 09:16:56",
+  "timezone": "Asia/Shanghai",
+  "seed": 42,
+  "python": "3.12.14",
+  "sklearn": "1.9.1",
+  "data_sha256": {
+    "data\\processed\\tickets_clean.csv": "888963c420de26f8",
+    "data\\processed\\users_clean.csv": "d72a9fffcb99d612",
+    "data\\processed\\volume_clean.csv": "3a42115e1b064d70",
+    "data\\knowledge\\faq.json": "775e0cb210674955"
+  },
+  "raw_sha256": {
+    "data\\raw\\daily_volume.csv": "c147e82179a341e2",
+    "data\\raw\\tickets.csv": "eb9d953a8ad232ec",
+    "data\\raw\\users.csv": "e4600d576ce2c76e"
+  },
+  "code_sha256": {
+    "app.py": "3a2beac8f5d247f6",
+    "common.py": "f722e68fa4dd2e28",
+    "eval_qa.py": "3cd0bcda10d1fb4a",
+    "evaluate.py": "8800e942a2599b1f",
+    "generate_data.py": "cf69f9d0b9d42795",
+    "module1_ticket.py": "0636807c7302331c",
+    "module2_cluster.py": "0eaf54e6e3f8f638",
+    "module3_regress.py": "86e8e88751381da4",
+    "module4_qa.py": "b6a57e5578a93d8a",
+    "preprocess.py": "48c71e990566ec7d",
+    "run_all.py": "348bd9bdd4d3a0ed"
+  },
+  "protocol": {
+    "module1": "随机分层 7:3（主）+ 骨架分组切分（辅，3 seeds）+ GroupKFold(5)",
+    "module3": "时间序列后 20%（主）+ 618 同级别留出 + 双 11 外推压力",
+    "口径声明": "所有报告数字必须引用本文件的 generated_at 与 data_sha256，禁止手抄旧值"
+  }
+}

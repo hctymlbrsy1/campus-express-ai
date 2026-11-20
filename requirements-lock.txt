@@ -1,0 +1,16 @@
+# 与仓库验证环境完全一致的依赖版本（Python 3.12）
+# 用途：复现实验数字或排查“换了电脑模型加载失败”时，优先按此文件安装：
+#   pip install -r requirements-lock.txt
+# 一般使用 requirements.txt 即可（允许较新版本）。
+
+numpy==2.3.5
+pandas==3.0.1
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0
+matplotlib==3.11.2
+flask==3.1.3
+openai==3.50.0
+python-dotenv==1.2.4
+psutil==7.2.2
+pypdf==7.1.1

@@ -1,0 +1,60 @@
+{
+  "module1_keyword_baseline": {
+    "accuracy": 0.6333,
+    "f1_macro": 0.6104,
+    "model_accuracy": 0.92,
+    "model_f1": 0.9077,
+    "note": "关键词规则只用 10 行；模型比它高约 29 个点，说明模型学到了组合特征而非单词表"
+  },
+  "module3_coef_recovery": {
+    "rows": [
+      {
+        "feature": "promo_index",
+        "fit": 161.43,
+        "generator": 165.0
+      },
+      {
+        "feature": "is_vacation",
+        "fit": -72.47,
+        "generator": -126.0
+      },
+      {
+        "feature": "lag1_volume",
+        "fit": 0.3,
+        "generator": 0.3
+      },
+      {
+        "feature": "dow_1",
+        "fit": -26.14,
+        "generator": -25
+      },
+      {
+        "feature": "dow_2",
+        "fit": -32.91,
+        "generator": -35
+      },
+      {
+        "feature": "dow_3",
+        "fit": -26.91,
+        "generator": -30
+      },
+      {
+        "feature": "dow_4",
+        "fit": -11.92,
+        "generator": -7
+      },
+      {
+        "feature": "dow_5",
+        "fit": 9.01,
+        "generator": 13
+      },
+      {
+        "feature": "dow_6",
+        "fit": -13.63,
+        "generator": -13
+      }
+    ],
+    "in_sample_r2": 0.948,
+    "note": "promo 161.4 vs 165、lag1 0.30 vs 0.30、各 dow 误差多在 5 以内——模型基本在反解生成公式"
+  }
+}

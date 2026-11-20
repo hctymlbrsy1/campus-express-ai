@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>校园快递驿站智能服务系统</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">驿</div>
+      <div>
+        <h1>校园快递驿站智能服务系统</h1>
+        <p>工单分流 · 用户分层 · 到件量预测 · 政策问答</p>
+      </div>
+    </div>
+    <div class="status" id="status">
+      <span class="dot" id="status-dot"></span>
+      <span id="status-text">正在检查模型状态…</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidenav">
+      <button class="nav-item active" data-view="overview">系统概览</button>
+      <button class="nav-item" data-view="classify">工单智能分流</button>
+      <button class="nav-item" data-view="segment">用户分群与触达</button>
+      <button class="nav-item" data-view="forecast">到件量预测</button>
+      <button class="nav-item" data-view="qa">政策智能问答</button>
+      <div class="nav-foot">
+        <span>五个模块 · 统一接口</span>
+        <span>CPU 可运行</span>
+      </div>
+    </nav>
+
+    <main class="content">
+      <!-- ============ 概览 ============ -->
+      <section class="view active" id="view-overview">
+        <h2>系统概览</h2>
+        <p class="lead">面向校园快递驿站的综合实践系统：把工单文本分类、用户行为聚类、日到件量回归与大模型政策问答集成到同一界面，覆盖“识别问题—理解用户—预测需求—解答咨询”的完整业务链路。</p>
+
+        <div class="stat-grid">
+          <div class="stat"><span class="stat-label">工单样本</span><span class="stat-value" id="s-tickets">–</span><span class="stat-sub">6 类业务工单</span></div>
+          <div class="stat"><span class="stat-label">分类准确率</span><span class="stat-value" id="s-acc">–</span><span class="stat-sub" id="s-acc-sub">–</span></div>
+          <div class="stat"><span class="stat-label">聚类轮廓系数</span><span class="stat-value" id="s-sil">–</span><span class="stat-sub">K = <span id="s-k">–</span> 类</span></div>
+          <div class="stat"><span class="stat-label">到件量 RMSE</span><span class="stat-value" id="s-rmse">–</span><span class="stat-sub">R² = <span id="s-r2">–</span></span></div>
+        </div>
+
+        <div class="card">
+          <h3>系统架构</h3>
+          <div class="arch">
+            <div class="arch-col">
+              <div class="arch-box input">用户输入<small>工单文本 / 行为特征 / 预测条件 / 咨询问题</small></div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-box api">Flask 统一接口层<small>入参校验 · 超长截断 · 异常降级 · 耗时记录</small></div>
+            </div>
+            <div class="arch-col">
+              <div class="arch-row">
+                <div class="arch-box m1">模块一<small>TF-IDF + LR/SVM<br/>工单分类</small></div>
+                <div class="arch-box m2">模块二<small>KMeans + PCA<br/>用户分群</small></div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-box m3">模块三<small>线性/MLP 回归<br/>到件量预测</small></div>
+                <div class="arch-box m4">模块四<small>检索增强 + LLM<br/>政策问答</small></div>
+              </div>
+            </div>
+          </div>
+          <p class="note">四个算法模块共享同一套数据字典与清洗流程；模块四在无 API Key 时自动降级为知识库检索，保证系统任何环境下可用。</p>
+        </div>
+
+        <div class="card">
+          <h3>各模块关键指标</h3>
+          <div id="metrics-table" class="table-wrap"><p class="muted">加载中…</p></div>
+        </div>
+      </section>
+
+      <!-- ============ 模块一 ============ -->
+      <section class="view" id="view-classify">
+        <h2>工单智能分流</h2>
+        <p class="lead">输入一条用户工单，系统判断业务类型、置信度与处理优先级，并给出分发建议。</p>
+
+        <div class="card">
+          <div class="examples">
+            <span>试试：</span>
+            <button class="chip" data-text="取件码输进去一直没反应，柜门打不开">取件码失效</button>
+            <button class="chip" data-text="包裹显示已签收但是我没拿到，是不是丢了，能赔吗">签收未收到</button>
+            <button class="chip" data-text="寄到广东首重多少钱？大概2公斤，能开发票吗">寄件咨询</button>
+            <button class="chip" data-text="退货寄回后商家说少件，让我找快递，运费谁出">退货少件</button>
+          </div>
+          <textarea id="ticket-text" rows="4" placeholder="例如：取件码 12345678 在菜鸟驿站柜子上输进去没反应，柜门打不开，急用"></textarea>
+          <div class="row-between">
+            <span class="muted" id="ticket-len">0 字</span>
+            <button class="primary" id="btn-classify">开始分流</button>
+          </div>
+        </div>
+
+        <div class="card result hidden" id="classify-result">
+          <div class="result-head">
+            <div>
+              <span class="muted">预测类型</span>
+              <h3 id="c-label">–</h3>
+            </div>
+            <span class="badge" id="c-priority">–</span>
+          </div>
+          <div class="conf-bar"><div class="conf-fill" id="c-conf-fill"></div></div>
+          <p class="muted" id="c-conf-text">–</p>
+          <div class="top3" id="c-top3"></div>
+          <div class="kv"><span>处理建议</span><b id="c-suggestion">–</b></div>
+          <div class="kv"><span>响应时间</span><b id="c-latency">–</b></div>
+        </div>
+      </section>
+
+      <!-- ============ 模块二 ============ -->
+      <section class="view" id="view-segment">
+        <h2>用户分群与触达</h2>
+        <p class="lead">拖动特征滑块模拟一位学生用户，系统判断其所属行为群体，并给出对应的运营触达策略。</p>
+        <div class="split">
+          <div class="card">
+            <h3>用户行为特征</h3>
+            <div id="sliders" class="sliders"></div>
+            <button class="primary" id="btn-segment">判断所属群体</button>
+          </div>
+          <div class="card">
+            <h3>分群结果</h3>
+            <div id="segment-result">
+              <p class="muted">尚未计算。</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>群体画像（全量 400 名用户）</h3>
+          <div id="profiles" class="table-wrap"><p class="muted">加载中…</p></div>
+        </div>
+      </section>
+
+      <!-- ============ 模块三 ============ -->
+      <section class="view" id="view-forecast">
+        <h2>到件量预测</h2>
+        <p class="lead">按日期与外部条件预测次日到件量，并对比“双 11 促销”情景下的增量，用于排班与临时货架准备。</p>
+        <div class="split">
+          <div class="card">
+            <h3>预测条件</h3>
+            <div class="form-grid">
+              <label>星期
+                <select id="f-dow">
+                  <option value="0">周一</option><option value="1">周二</option><option value="2">周三</option>
+                  <option value="3">周四</option><option value="4">周五</option><option value="5">周六</option><option value="6">周日</option>
+                </select>
+              </label>
+              <label>促销强度 <span class="val" id="v-promo">0.0</span>
+                <input type="range" id="f-promo" min="0" max="1" step="0.05" value="0" />
+              </label>
+              <label>气温 ℃ <span class="val" id="v-temp">20</span>
+                <input type="range" id="f-temp" min="-5" max="38" step="1" value="20" />
+              </label>
+              <label>降雨 mm <span class="val" id="v-rain">0</span>
+                <input type="range" id="f-rain" min="0" max="40" step="1" value="0" />
+              </label>
+              <label>月份
+                <select id="f-month">
+                  <option value="1">1 月</option><option value="2">2 月</option><option value="3">3 月</option>
+                  <option value="4">4 月</option><option value="5">5 月</option><option value="6">6 月</option>
+                  <option value="7">7 月</option><option value="8">8 月</option><option value="9">9 月</option>
+                  <option value="10">10 月</option><option value="11" selected>11 月</option><option value="12">12 月</option>
+                </select>
+              </label>
+              <label class="check"><input type="checkbox" id="f-holiday" /> 法定节假日</label>
+              <label class="check"><input type="checkbox" id="f-vacation" /> 寒暑假</label>
+            </div>
+            <p class="muted">滞后特征自动取最近一天的实测值：<span id="f-lag"></span></p>
+            <button class="primary" id="btn-forecast">预测到件量</button>
+          </div>
+          <div class="card">
+            <h3>预测结果</h3>
+            <div id="forecast-result"><p class="muted">尚未计算。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 模块四 ============ -->
+      <section class="view" id="view-qa">
+        <h2>政策智能问答</h2>
+        <p class="lead">基于 20 条驿站政策知识库做检索增强问答，可切换三种提示策略对比回答风格与稳定性。</p>
+        <div class="card">
+          <div class="strategies" id="strategies">
+            <label><input type="radio" name="strategy" value="zero" /> 零样本</label>
+            <label><input type="radio" name="strategy" value="few" /> 少样本</label>
+            <label><input type="radio" name="strategy" value="cot" checked /> 思维链</label>
+          </div>
+          <div class="examples">
+            <span>常见问题：</span>
+            <button class="chip" data-q="包裹在驿站最多能放几天？超时怎么收费？">超时保管</button>
+            <button class="chip" data-q="充电宝可以寄到外省吗？">充电宝寄件</button>
+            <button class="chip" data-q="包裹丢了怎么赔？需要什么材料？">丢件理赔</button>
+            <button class="chip" data-q="可以让室友帮我代取吗？">代取授权</button>
+          </div>
+          <div class="qa-row">
+            <input id="qa-input" type="text" placeholder="输入你的问题，例如：保价费怎么算？" />
+            <button class="primary" id="btn-qa">提问</button>
+          </div>
+        </div>
+        <div class="card result hidden" id="qa-result">
+          <div class="result-head">
+            <h3>回答</h3>
+            <span class="badge" id="qa-mode">–</span>
+          </div>
+          <p class="answer" id="qa-answer">–</p>
+          <div class="kv"><span>提示策略</span><b id="qa-strategy">–</b></div>
+          <div class="kv"><span>响应时间</span><b id="qa-latency">–</b></div>
+          <div class="kv"><span>引用条款</span><b id="qa-sources">–</b></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

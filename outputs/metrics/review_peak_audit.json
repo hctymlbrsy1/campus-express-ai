@@ -1,0 +1,63 @@
+{
+  "split_compare": {
+    "缩尾目标": {
+      "RMSE": 36.01,
+      "MAE": 29.76,
+      "R2": 0.8383,
+      "MAPE": 10.18
+    },
+    "原始目标": {
+      "RMSE": 35.79,
+      "MAE": 29.52,
+      "R2": 0.8404,
+      "MAPE": 10.05
+    }
+  },
+  "peak_holdout": {
+    "train_end": "2025-10-31",
+    "test_range": "2025-11-01 ~ 2025-11-30",
+    "models": {
+      "数值编码": {
+        "RMSE": 59.91,
+        "MAE": 51.51,
+        "R2": 0.6659,
+        "MAPE": 10.89
+      },
+      "one-hot 编码": {
+        "RMSE": 36.38,
+        "MAE": 29.25,
+        "R2": 0.8768,
+        "MAPE": 6.59
+      }
+    },
+    "worst": [
+      {
+        "date": "2025-11-16",
+        "volume": 465,
+        "promo_index": 0.0,
+        "pred": 582.4,
+        "err": 117.4
+      },
+      {
+        "date": "2025-11-12",
+        "volume": 583,
+        "promo_index": 1.0,
+        "pred": 681.3,
+        "err": 98.3
+      },
+      {
+        "date": "2025-11-26",
+        "volume": 309,
+        "promo_index": 0.0,
+        "pred": 406.0,
+        "err": 97.0
+      }
+    ],
+    "mean_actual": 489.5,
+    "mean_pred": 536.7
+  },
+  "promo_coef_raw_unit": {
+    "volume": 31.9,
+    "volume_raw": 34.54
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "same_level_618": {
+    "volume_orig": {
+      "numeric": {
+        "RMSE": 27.97,
+        "MAE": 19.77,
+        "R2": 0.0882,
+        "MAPE": 3.72,
+        "mean_pred": 538.6,
+        "mean_true": 536.1
+      },
+      "onehot": {
+        "RMSE": 23.61,
+        "MAE": 17.32,
+        "R2": 0.3502,
+        "MAPE": 3.29,
+        "mean_pred": 537.5,
+        "mean_true": 536.1
+      },
+      "onehot_vac_nummonth": {
+        "RMSE": 17.37,
+        "MAE": 13.78,
+        "R2": 0.6484,
+        "MAPE": 2.62,
+        "mean_pred": 540.9,
+        "mean_true": 536.1
+      },
+      "onehot_vac": {
+        "RMSE": 16.69,
+        "MAE": 13.02,
+        "R2": 0.6754,
+        "MAPE": 2.47,
+        "mean_pred": 538.4,
+        "mean_true": 536.1
+      }
+    },
+    "volume_clip": {
+      "numeric": {
+        "RMSE": 27.74,
+        "MAE": 19.14,
+        "R2": -0.0835,
+        "MAPE": 3.62,
+        "mean_pred": 534.8,
+        "mean_true": 534.9
+      },
+      "onehot": {
+        "RMSE": 23.95,
+        "MAE": 16.49,
+        "R2": 0.1925,
+        "MAPE": 3.14,
+        "mean_pred": 533.9,
+        "mean_true": 534.9
+      },
+      "onehot_vac_nummonth": {
+        "RMSE": 15.92,
+        "MAE": 12.15,
+        "R2": 0.6433,
+        "MAPE": 2.32,
+        "mean_pred": 535.7,
+        "mean_true": 534.9
+      },
+      "onehot_vac": {
+        "RMSE": 15.61,
+        "MAE": 12.17,
+        "R2": 0.657,
+        "MAPE": 2.32,
+        "mean_pred": 534.3,
+        "mean_true": 534.9
+      }
+    }
+  },
+  "extrap_1111": {
+    "volume_orig": {
+      "numeric": {
+        "RMSE": 59.91,
+        "MAE": 51.51,
+        "R2": 0.6659,
+        "MAPE": 10.89,
+        "mean_pred": 536.7,
+        "mean_true": 489.5
+      },
+      "onehot": {
+        "RMSE": 55.09,
+        "MAE": 47.53,
+        "R2": 0.7176,
+        "MAPE": 9.95,
+        "mean_pred": 532.1,
+        "mean_true": 489.5
+      },
+      "onehot_vac_nummonth": {
+        "RMSE": 25.96,
+        "MAE": 21.72,
+        "R2": 0.9373,
+        "MAPE": 5.04,
+        "mean_pred": 484.5,
+        "mean_true": 489.5
+      },
+      "onehot_vac": {
+        "RMSE": 30.12,
+        "MAE": 25.54,
+        "R2": 0.9156,
+        "MAPE": 5.64,
+        "mean_pred": 472.1,
+        "mean_true": 489.5
+      }
+    },
+    "volume_clip": {
+      "numeric": {
+        "RMSE": 61.87,
+        "MAE": 53.49,
+        "R2": 0.5636,
+        "MAPE": 11.14,
+        "mean_pred": 530.7,
+        "mean_true": 481.6
+      },
+      "onehot": {
+        "RMSE": 57.46,
+        "MAE": 49.44,
+        "R2": 0.6237,
+        "MAPE": 10.22,
+        "mean_pred": 526.0,
+        "mean_true": 481.6
+      },
+      "onehot_vac_nummonth": {
+        "RMSE": 25.54,
+        "MAE": 20.92,
+        "R2": 0.9257,
+        "MAPE": 4.8,
+        "mean_pred": 480.3,
+        "mean_true": 481.6
+      },
+      "onehot_vac": {
+        "RMSE": 27.11,
+        "MAE": 22.08,
+        "R2": 0.9162,
+        "MAPE": 5.09,
+        "mean_pred": 467.9,
+        "mean_true": 481.6
+      }
+    }
+  }
+}

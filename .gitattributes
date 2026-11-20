@@ -1,0 +1,16 @@
+# 统一换行：文本入库用 LF，二进制文件不转换
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.joblib binary
+
+*.py   text
+*.md   text
+*.csv  text
+*.json text
+*.yml  text

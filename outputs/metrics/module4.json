@@ -1,0 +1,35 @@
+{
+  "n_questions": 15,
+  "n_calls": 45,
+  "llm_calls": 45,
+  "fallback_calls": 0,
+  "valid_for_conclusion": true,
+  "model": "qwen4-max",
+  "by_strategy": {
+    "少样本": {
+      "avg_keyword_coverage": 0.917,
+      "avg_latency_ms": 2416.007,
+      "p95_latency_ms": 4063.45,
+      "avg_answer_len": 61.2,
+      "prefix_leak_n": 1,
+      "numbered_n": 0
+    },
+    "思维链": {
+      "avg_keyword_coverage": 0.867,
+      "avg_latency_ms": 4013.673,
+      "p95_latency_ms": 5629.74,
+      "avg_answer_len": 83.467,
+      "prefix_leak_n": 0,
+      "numbered_n": 6
+    },
+    "零样本": {
+      "avg_keyword_coverage": 0.917,
+      "avg_latency_ms": 2425.2,
+      "p95_latency_ms": 3182.32,
+      "avg_answer_len": 62.333,
+      "prefix_leak_n": 0,
+      "numbered_n": 0
+    }
+  },
+  "cot_vs_zero_latency_ratio": 1.65
+}

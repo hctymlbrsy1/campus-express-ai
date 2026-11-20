@@ -1,0 +1,29 @@
+{
+  "classify": {
+    "mean_ms": 0.48,
+    "p50_ms": 0.4,
+    "p95_ms": 0.68,
+    "n": 50
+  },
+  "segment": {
+    "mean_ms": 0.16,
+    "p50_ms": 0.13,
+    "p95_ms": 0.25,
+    "n": 50
+  },
+  "forecast": {
+    "mean_ms": 1.88,
+    "p50_ms": 1.52,
+    "p95_ms": 3.83,
+    "n": 50
+  },
+  "model_rss_mb": 15.8,
+  "total_rss_mb": 149.7,
+  "model_files_kb": {
+    "ticket_classifier.joblib": 291.4,
+    "ticket_lr.joblib": 291.4,
+    "ticket_svm.joblib": 485.6,
+    "user_segmenter.joblib": 4.2,
+    "volume_regressor.joblib": 2.4
+  }
+}

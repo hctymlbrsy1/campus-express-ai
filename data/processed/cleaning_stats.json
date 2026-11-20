@@ -1,0 +1,58 @@
+{
+  "tickets": {
+    "raw_rows": 528,
+    "missing_text": 8,
+    "duplicates_removed": 15,
+    "too_short_removed": 3,
+    "garbage_removed": 3,
+    "garbage_examples": [
+      "。。。",
+      "asdf",
+      "□□□□"
+    ],
+    "clean_rows": 499,
+    "label_dist": {
+      "取件问题": 152,
+      "寄件问题": 84,
+      "丢件破损": 78,
+      "赔付投诉": 68,
+      "退换货": 67,
+      "其他咨询": 50
+    },
+    "text_len": {
+      "mean": 36.61,
+      "p50": 33,
+      "p95": 68,
+      "max": 82
+    },
+    "long_text_rows": 0
+  },
+  "users": {
+    "raw_rows": 400,
+    "outliers_3sigma": {
+      "weekly_pickups": 2,
+      "avg_dwell_hours": 0,
+      "night_ratio": 0,
+      "weekend_ratio": 0,
+      "proxy_ratio": 0,
+      "large_item_ratio": 1,
+      "complaint_cnt": 1,
+      "avg_weight_kg": 1
+    },
+    "clean_rows": 400
+  },
+  "volume": {
+    "raw_rows": 470,
+    "missing_days_filled": 3,
+    "outliers_flagged": 10,
+    "outliers_on_promo_days": 10,
+    "outliers_winsorized": 0,
+    "clean_rows": 466,
+    "volume_mean": 359.4,
+    "volume_max": 662,
+    "date_range": [
+      "2025-06-15",
+      "2026-09-23"
+    ]
+  }
+}

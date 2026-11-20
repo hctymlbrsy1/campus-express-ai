@@ -1,0 +1,219 @@
+{
+  "dataset": {
+    "rows": 499,
+    "train": 349,
+    "test": 150,
+    "classes": 6
+  },
+  "models": {
+    "lr": {
+      "name": "逻辑回归",
+      "accuracy": 0.92,
+      "f1_macro": 0.9077,
+      "f1_weighted": 0.9215,
+      "cv5_f1_macro_mean": 0.8779,
+      "cv5_f1_macro_std": 0.0413,
+      "train_ms": 127.8,
+      "infer_ms_per_100": 3.81,
+      "per_class": {
+        "取件问题": {
+          "precision": 0.977,
+          "recall": 0.913,
+          "f1-score": 0.944
+        },
+        "寄件问题": {
+          "precision": 0.92,
+          "recall": 0.92,
+          "f1-score": 0.92
+        },
+        "退换货": {
+          "precision": 0.905,
+          "recall": 0.95,
+          "f1-score": 0.927
+        },
+        "丢件破损": {
+          "precision": 1.0,
+          "recall": 0.958,
+          "f1-score": 0.979
+        },
+        "赔付投诉": {
+          "precision": 0.905,
+          "recall": 0.95,
+          "f1-score": 0.927
+        },
+        "其他咨询": {
+          "precision": 0.706,
+          "recall": 0.8,
+          "f1-score": 0.75
+        }
+      },
+      "cv5_group_f1_macro_mean": 0.8276,
+      "cv5_group_f1_macro_std": 0.0326,
+      "group_split": {
+        "skeleton_len": 12,
+        "n_groups": 359,
+        "acc_mean": 0.8271,
+        "acc_std": 0.0174,
+        "f1_mean": 0.7917,
+        "f1_std": 0.0067
+      }
+    },
+    "svm": {
+      "name": "线性SVM",
+      "accuracy": 0.9133,
+      "f1_macro": 0.9003,
+      "f1_weighted": 0.9145,
+      "cv5_f1_macro_mean": 0.8823,
+      "cv5_f1_macro_std": 0.0388,
+      "train_ms": 214.4,
+      "infer_ms_per_100": 12.99,
+      "per_class": {
+        "取件问题": {
+          "precision": 0.955,
+          "recall": 0.913,
+          "f1-score": 0.933
+        },
+        "寄件问题": {
+          "precision": 0.923,
+          "recall": 0.96,
+          "f1-score": 0.941
+        },
+        "退换货": {
+          "precision": 0.905,
+          "recall": 0.95,
+          "f1-score": 0.927
+        },
+        "丢件破损": {
+          "precision": 1.0,
+          "recall": 0.958,
+          "f1-score": 0.979
+        },
+        "赔付投诉": {
+          "precision": 0.895,
+          "recall": 0.85,
+          "f1-score": 0.872
+        },
+        "其他咨询": {
+          "precision": 0.706,
+          "recall": 0.8,
+          "f1-score": 0.75
+        }
+      },
+      "cv5_group_f1_macro_mean": 0.8391,
+      "cv5_group_f1_macro_std": 0.0513,
+      "group_split": {
+        "skeleton_len": 12,
+        "n_groups": 359,
+        "acc_mean": 0.833,
+        "acc_std": 0.0362,
+        "f1_mean": 0.7968,
+        "f1_std": 0.0317
+      }
+    }
+  },
+  "best": "lr",
+  "confusion_matrix": {
+    "labels": [
+      "pickup",
+      "send",
+      "return",
+      "lost",
+      "compensate",
+      "other"
+    ],
+    "matrix": [
+      [
+        42,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        23,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        19,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        23,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        19,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1,
+        12
+      ]
+    ]
+  },
+  "error_count": 12,
+  "error_rate": 0.08,
+  "error_rate_pct": 8.0,
+  "hard_sample_error_rate": 0.1935,
+  "hard_sample_error_rate_pct": 19.35,
+  "evaluation_protocol": {
+    "主口径": "随机分层 7:3（同模板变体可能分到两侧，偏乐观）",
+    "辅助口径": "按去数字前 12 字骨架分组切分（跨模板，偏保守）",
+    "骨架敏感性": [
+      {
+        "skeleton_len": 8,
+        "n_groups": 319,
+        "acc_mean": 0.8302,
+        "acc_std": 0.0302,
+        "f1_mean": 0.8133,
+        "f1_std": 0.0291
+      },
+      {
+        "skeleton_len": 12,
+        "n_groups": 359,
+        "acc_mean": 0.8271,
+        "acc_std": 0.0174,
+        "f1_mean": 0.7917,
+        "f1_std": 0.0067
+      },
+      {
+        "skeleton_len": 20,
+        "n_groups": 431,
+        "acc_mean": 0.8498,
+        "acc_std": 0.0058,
+        "f1_mean": 0.8406,
+        "f1_std": 0.0087
+      }
+    ],
+    "acc_range_across_protocols": [
+      0.8271,
+      0.92
+    ],
+    "acc_range_across_skeletons": [
+      0.8271,
+      0.8498
+    ],
+    "说明": "两种口径给出的是上下界，真实工单分布介于两者之间；报告中并列呈现，不只报高值。"
+  }
+}
